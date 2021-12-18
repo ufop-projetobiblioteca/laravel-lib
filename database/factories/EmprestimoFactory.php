@@ -26,6 +26,7 @@ class EmprestimoFactory extends Factory
         return [
             'aluno_id' => Aluno::factory(),
             'livro_id' => Livro::factory(),
+            'devolucao' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
             'renovado' => $this->faker->boolean($chanceOfGettingTrue = 0),
             'ativo' => $this->faker->boolean($chanceOfGettingTrue = 50)
         ];

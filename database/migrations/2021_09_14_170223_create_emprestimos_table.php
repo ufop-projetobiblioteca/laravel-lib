@@ -17,6 +17,7 @@ class CreateEmprestimosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('aluno_id');
             $table->unsignedBigInteger('livro_id');
+            $table->date('devolucao');
             $table->boolean('renovado');
             $table->boolean('ativo');
             $table->timestamps();
