@@ -25,7 +25,7 @@
                     <th>Aluno</th>
                     <th>Livro</th>
                     <th>Código</th>
-                    <th>Data</th>
+                    <th>Devolução</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -37,7 +37,7 @@
                     <th>{{ $e->aluno->nome }}</th>
                     <th>{{ $e->livro->titulo }}</th>
                     <th>{{ $e->livro->codigo }}</th>
-                    <th>{{ $e->updated_at }}</th>
+                    <th>{{ $e->devolucao }}</th>
                     <td class="tdBotoes">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDevolver{{ $e->id }}">
@@ -84,8 +84,8 @@
                                     <dt class="col-sm-3">Código:</dt>
                                     <dd class="col-sm-9">{{ $e->livro->codigo }}</dd>
 
-                                    <dt class="col-sm-3">Data:</dt>
-                                    <dd class="col-sm-9">{{ $e->updated_at }}</dd>
+                                    <dt class="col-sm-3">Devolução:</dt>
+                                    <dd class="col-sm-9">{{ $e->devolucao }}</dd>
                                 </dl>
                             </div>
                             <div class="modal-footer">
@@ -106,7 +106,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <form method="POST" action="{{ route('emprestimos.update', $e->id) }}">
+                            <form method="POST" id="formDevolucao" action="{{ route('emprestimos.update', $e->id) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="modal-body">
@@ -128,12 +128,12 @@
 
                                         <dt class="col-sm-3">Devolução:</dt>
                                         <dd class="col-sm-9">
-                                            <input type="date" class="form-control" name="data" value="{{ $e->updated_at }}" required>
+                                            <input type="date" class="form-control" id="devolucao" name="devolucao" required>
                                         </dd>
                                     </dl>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-success">Salvar</button>
+                                    <button type="button" class="btn btn-outline-success" onclick="validaData()">Salvar</button>
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
                                 </div>
                             </form>
