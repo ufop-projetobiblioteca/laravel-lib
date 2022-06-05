@@ -19,11 +19,11 @@ use App\Http\Controllers\EmprestimoController;
 
 Route::get('/', function () {
     return view('home');
-})->middleware('auth')->name('home');
+})->name('home');
 
-Route::resource('/livros', LivroController::class)->middleware('auth');
-Route::resource('/alunos', AlunoController::class)->middleware('auth');
-Route::resource('/emprestimos', EmprestimoController::class)->middleware('auth');
+Route::resource('/livros', LivroController::class);
+Route::resource('/alunos', AlunoController::class);
+Route::resource('/emprestimos', EmprestimoController::class);
 
 Auth::routes();
 
