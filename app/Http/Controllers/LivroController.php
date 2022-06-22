@@ -37,7 +37,7 @@ class LivroController extends Controller
     public function store(Request $request)
     {
         Livro::create($request->all());
-        session()->flash('mensagem', 'Livro cadastrada com sucesso!');
+        session()->flash('mensagem', 'Livro cadastrado com sucesso!');
         return redirect()->route('livros.index');
     }
 
