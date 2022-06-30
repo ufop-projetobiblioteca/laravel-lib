@@ -16,9 +16,9 @@ class EmprestimoController extends Controller
      */
     public function index()
     {
-        $emprestimos = Emprestimo::orderBy('nome')->paginate(15);
+        $emprestimos = Emprestimo::orderBy('aluno_id')->paginate(15);
         $alunos = Aluno::orderBy('nome')->get();
-        $livros = Livro::orderBy('nome')->get();
+        $livros = Livro::orderBy('titulo')->get();
         return view('emprestimos.index', ['emprestimos' => $emprestimos, 'alunos' => $alunos, 'livros' => $livros]);
     }
 

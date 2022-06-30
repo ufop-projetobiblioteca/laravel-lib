@@ -228,6 +228,10 @@
                                         @endforeach
                                     </select>
                                 </dd>
+                                <dt class="col-sm-3">Devolução:</dt>
+                                <dd class="col-sm-9">
+                                    <input type="date" class="form-control" id="devolucao" name="devolucao" required>
+                                </dd>
                                 <input type="hidden" class="form-control" name="renovado" value="0">
                                 <input type="hidden" class="form-control" name="ativo" value="1">
                             </dl>

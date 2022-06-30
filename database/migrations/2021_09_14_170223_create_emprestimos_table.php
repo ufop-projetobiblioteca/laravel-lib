@@ -14,7 +14,7 @@ class CreateEmprestimosTable extends Migration
     public function up()
     {
         Schema::create('emprestimos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->unsignedBigInteger('aluno_id');
             $table->unsignedBigInteger('livro_id');
             $table->date('devolucao');

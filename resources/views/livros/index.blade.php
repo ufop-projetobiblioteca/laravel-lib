@@ -16,7 +16,7 @@
         </button>
     </div>
     <div class="card-body">
-        <table class="table table-striped table-hover">
+        <table id="datatablesSimple">
             <thead>
                 <tr>
                     <th>#</th>
@@ -236,7 +236,6 @@
                 </div>
             </div>
         </div>
-        {{$livros->links()}}
     </div>
 </div>
 @endsection
