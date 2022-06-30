@@ -26,11 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Charts $charts, UrlGenerator $url)
     {
-        if(env('APP_ENV') !== 'local')
-        {
-            $url->forceScheme('https');
-        }
-
         Paginator::useBootstrap();
         $charts->register([
             \App\Charts\SampleChart::class
