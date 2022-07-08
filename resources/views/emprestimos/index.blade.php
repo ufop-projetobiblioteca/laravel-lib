@@ -106,7 +106,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <form method="POST" id="formDevolucao" action="{{ route('emprestimos.update', $e->id) }}">
+                            <form method="POST" id="formDevolucao" action="{{ route('emprestimos.update', $e->id) }}" onsubmit="return validaData()">
                                 @csrf
                                 @method('PUT')
                                 <div class="modal-body">
@@ -128,12 +128,12 @@
 
                                         <dt class="col-sm-3">Devolução:</dt>
                                         <dd class="col-sm-9">
-                                            <input type="date" class="form-control" id="devolucao" name="devolucao" required>
+                                            <input type="date" class="form-control" id="devolver" name="devolucao" required>
                                         </dd>
                                     </dl>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-success" onclick="validaData()">Salvar</button>
+                                    <input type="submit" class="btn btn-outline-success" value="Salvar">
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
                                 </div>
                             </form>
@@ -205,7 +205,7 @@
                         <h5 class="modal-title" id="exampleModalLabel">Novo Empréstimo</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('emprestimos.store') }}" method="post">
+                    <form action="{{ route('emprestimos.store') }}" method="post" onsubmit="return validaCadastro()">
                         @csrf
                         <div class="modal-body">
                             <dl class="row">

@@ -14,11 +14,12 @@ class CreateLivrosTable extends Migration
     public function up()
     {
         Schema::create('livros', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('codigo', 50);
             $table->string('titulo', 50);
             $table->string('autor', 50);
             $table->integer('edicao');
+            $table->integer('ano');
             $table->string('estante', 10);
             $table->string('prateleira', 10);
             $table->boolean('emprestado');

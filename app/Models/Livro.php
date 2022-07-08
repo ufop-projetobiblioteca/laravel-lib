@@ -9,7 +9,7 @@ class Livro extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['codigo', 'titulo', 'autor',  'edicao', 'estante', 'prateleira', 'emprestado'];
+    protected $fillable = ['codigo', 'titulo', 'autor',  'edicao', 'ano', 'estante', 'prateleira', 'emprestado'];
 
     // UMA instância de livro -> possui N empréstimos
     public function emprestimo()
