@@ -9,7 +9,7 @@ class Emprestimo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['aluno_id', 'livro_id', 'devolucao', 'renovado', 'ativo'];
+    protected $fillable = ['aluno_id', 'livro_id', 'devolucao', 'em_atraso', 'renovado', 'ativo'];
 
     // UMA instância de empréstimo -> pertence a UM usuário
     public function aluno()

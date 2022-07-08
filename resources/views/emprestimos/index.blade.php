@@ -131,6 +131,8 @@
                                             <input type="date" class="form-control" id="devolver" name="devolucao" required>
                                         </dd>
                                     </dl>
+                                    <input type="hidden" class="form-control" name="e_ativo" value="1">
+                                    <input type="hidden" name="em_atraso" id="em_atraso" value="{{ $e->em_atraso }}">
                                 </div>
                                 <div class="modal-footer">
                                     <input type="submit" class="btn btn-outline-success" value="Salvar">
@@ -158,7 +160,8 @@
                                         <p class="mb-0">Tem certeza que deseja devolver "<b>{{$e->livro->titulo}}</b>"?</p>
                                     </blockquote>
                                 </div>
-                                <input type="hidden" class="form-control" name="ativo" value="0">
+                                <input type="hidden" class="form-control" name="id" value="{{ $e->id }}">
+                                <input type="hidden" class="form-control" name="e_ativo" value="0">
                                 <div class="modal-footer">
                                     <input class="btn btn-outline-success" type="submit" value="Devolver">
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>

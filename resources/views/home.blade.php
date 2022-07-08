@@ -7,7 +7,7 @@
     $livros = DB::table('livros')->count();
     $alunos = DB::table('alunos')->count();
     $emprestimos = DB::table('emprestimos')->where('ativo', 1)->count();
-    $atrasos = DB::table('livros')->count();
+    $atrasos = DB::table('emprestimos')->where('em_atraso', 1 and 'ativo', 1)->count();
 
 ?>
 <div class="container">
@@ -59,7 +59,7 @@
             <div class="card-header">Empréstimos em Atraso</div>
                 <div class="card-body">
                     <?php
-                        echo $emprestimos
+                        echo $atrasos
                     ?>
                 </div>
             </div>

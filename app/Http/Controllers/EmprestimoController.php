@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Emprestimo;
 use App\Models\Aluno;
 use App\Models\Livro;
@@ -17,6 +18,19 @@ class EmprestimoController extends Controller
      */
     public function index()
     {
+        $date = Carbon::now()->toDateString();
+        $emprestimos = DB::table('emprestimos')->get();
+
+        foreach ($emprestimos as $e) {
+            if($e->devolucao < $date) {
+                DB::table('emprestimos')->where('id', $e->id)->update(['em_atraso' => 1]);
+            }
+            else {
+                DB::table('emprestimos')->where('id', $e->id)->update(['em_atraso' => 0]);
+            }
+            
+        }
+
         $emprestimos = Emprestimo::orderBy('aluno_id')->paginate(15);
         $alunos = Aluno::orderBy('nome')->get();
         $livros = Livro::orderBy('titulo')->get();
@@ -79,10 +93,38 @@ class EmprestimoController extends Controller
      */
     public function update(Request $request, Emprestimo $emprestimo)
     {
-        $emprestimo->fill($request->all());
+
+        $date = Carbon::now()->toDateString();
+        $devolucao = $request->devolucao;
+        $em_atraso = $request->em_atraso;
+        $id = $request->id;
+        $ativo = $request->e_ativo;
+
+        if($ativo == 0) {
+            DB::table('emprestimos')->where('id', $id)->update(['ativo' => 0]);
+            $emprestimo->save();
+            session()->flash('mensagem', 'Empréstimo devolvido com sucesso!');
+            return redirect()->route('emprestimos.index');
+        }
+        else if($em_atraso == 1) {
+            session()->flash('mensagemErro', 'Não é possível renovar empréstimos em atraso!');
+            return redirect()->route('emprestimos.index');
+        }
+        else if($devolucao >= $date) {
+            $emprestimo->fill($request->all());
+            $emprestimo->save();
+            session()->flash('mensagem', 'Empréstimo renovado com sucesso!');
+            return redirect()->route('emprestimos.index');
+        }
+        else {
+            session()->flash('mensagemErro', 'Erro ao renovar empréstimo!');
+            return redirect()->route('emprestimos.index');
+        }
+ 
+        /* $emprestimo->fill($request->all());
         $emprestimo->save();
         session()->flash('mensagem', 'Empréstimo alterado com sucesso!');
-        return redirect()->route('emprestimos.index');
+        return redirect()->route('emprestimos.index'); */
     }
 
     /**

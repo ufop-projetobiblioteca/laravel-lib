@@ -102,6 +102,12 @@
                     </div>
 
                     @endif
+                    @if(session('mensagemErro'))
+                    <div class="alert alert-danger">
+                        {{session('mensagemErro')}}
+                    </div>
+
+                    @endif
                     @yield('content')
                 </div>
             </main>

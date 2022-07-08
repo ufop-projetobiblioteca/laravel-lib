@@ -17,14 +17,14 @@ use App\Http\Controllers\EmprestimoController;
 |
 */
 
-/* Route::get('/', function () {
+Route::get('/', function () {
     return view('home');
-})->name('home'); */
+})->name('home')->middleware('auth');
 
-Route::resource('/livros', LivroController::class);
-Route::resource('/alunos', AlunoController::class);
-Route::resource('/emprestimos', EmprestimoController::class);
+Route::resource('/livros', LivroController::class)->middleware('auth');
+Route::resource('/alunos', AlunoController::class)->middleware('auth');
+Route::resource('/emprestimos', EmprestimoController::class)->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
