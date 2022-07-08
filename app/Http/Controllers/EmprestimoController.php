@@ -79,6 +79,10 @@ class EmprestimoController extends Controller
      */
     public function update(Request $request, Emprestimo $emprestimo)
     {
+        $livro_id = $emprestimo->livro_id;
+        $aluno_id = $emprestimo->aluno_id;
+        DB::table('livros')->where('id', $livro_id)->update(['emprestado' => 0]);
+        DB::table('alunos')->where('id', $aluno_id)->update(['emprestimo_ativo' => 0]);
         $emprestimo->fill($request->all());
         $emprestimo->save();
         session()->flash('mensagem', 'Empréstimo alterado com sucesso!');
