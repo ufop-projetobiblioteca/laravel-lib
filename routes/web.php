@@ -17,9 +17,9 @@ use App\Http\Controllers\EmprestimoController;
 |
 */
 
-/* Route::get('/', function () {
+Route::get('/home', function () {
     return view('home');
-})->name('home'); */
+})->name('home');
 
 Route::resource('/livros', LivroController::class);
 Route::resource('/alunos', AlunoController::class);

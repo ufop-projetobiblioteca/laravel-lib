@@ -89,6 +89,9 @@
                                     <dt class="col-sm-3">Edicao:</dt>
                                     <dd class="col-sm-9">{{$l->edicao}}</dd>
 
+                                    <dt class="col-sm-3">Ano:</dt>
+                                    <dd class="col-sm-9">{{$l->ano}}</dd>
+
                                     <dt class="col-sm-3">Estante:</dt>
                                     <dd class="col-sm-9">{{$l->estante}}</dd>
 
@@ -135,6 +138,11 @@
                                         <dt class="col-sm-3">Edição:</dt>
                                         <dd class="col-sm-9">
                                             <input type="text" class="form-control" name="edicao" value="{{$l->edicao}}" required maxlength="30">
+                                        </dd>
+
+                                        <dt class="col-sm-3">Ano:</dt>
+                                        <dd class="col-sm-9">
+                                            <input type="text" class="form-control" name="edicao" value="{{$l->ano}}" required maxlength="30">
                                         </dd>
 
                                         <dt class="col-sm-3">Estante:</dt>
@@ -214,6 +222,11 @@
                                 <dt class="col-sm-3">Edição:</dt>
                                 <dd class="col-sm-9">
                                     <input type="text" class="form-control" name="edicao" required maxlength="30">
+                                </dd>
+
+                                <dt class="col-sm-3">Ano:</dt>
+                                <dd class="col-sm-9">
+                                    <input type="text" class="form-control" name="ano" required maxlength="30">
                                 </dd>
 
                                 <dt class="col-sm-3">Estante:</dt>
