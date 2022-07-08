@@ -26,6 +26,7 @@ class LivroFactory extends Factory
             'titulo' => $this->faker->sentence(3, true),
             'autor' => $this->faker->name(),
             'edicao' => $this->faker->randomNumber(),
+            'ano' => $this->faker->randomNumber(),
             'estante' => $this->faker->randomNumber(),
             'prateleira' => $this->faker->randomNumber(),
             'emprestado' => $this->faker->boolean($chanceOfGettingTrue = 0),

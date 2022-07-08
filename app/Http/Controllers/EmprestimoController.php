@@ -6,6 +6,7 @@ use App\Models\Emprestimo;
 use App\Models\Aluno;
 use App\Models\Livro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmprestimoController extends Controller
 {
@@ -40,6 +41,8 @@ class EmprestimoController extends Controller
      */
     public function store(Request $request)
     {
+        $livro_id = $request->input('livro_id');
+        DB::table('livros')->where('id', $livro_id)->update(['emprestado' => 1]);
         Emprestimo::create($request->all());
         session()->flash('mensagem', 'Empréstimo realizado com sucesso!');
         return redirect()->route('emprestimos.index');
@@ -76,11 +79,8 @@ class EmprestimoController extends Controller
      */
     public function update(Request $request, Emprestimo $emprestimo)
     {
-
         $emprestimo->fill($request->all());
         $emprestimo->save();
-
-
         session()->flash('mensagem', 'Empréstimo alterado com sucesso!');
         return redirect()->route('emprestimos.index');
     }
@@ -93,6 +93,8 @@ class EmprestimoController extends Controller
      */
     public function destroy(Emprestimo $emprestimo)
     {
+        $livro_id = $emprestimo->livro_id;
+        DB::table('livros')->where('id', $livro_id)->update(['emprestado' => 0]);
         $emprestimo->delete();
         session()->flash('mensagem', 'Empréstimo excluído com sucesso!');
         return redirect()->route('emprestimos.index');
