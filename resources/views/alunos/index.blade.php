@@ -36,7 +36,7 @@
                     <th>{{ $a->data_nascimento }}</th>
                     <th>{{ $a->email }}</th>
                     <td>
-                        @if($a->emprestimo_ativo)
+                        @if($a->emprestimo_ativo == 0)
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="gridCheck1" disabled>
                         </div>
