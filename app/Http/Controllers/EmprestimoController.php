@@ -112,7 +112,6 @@ class EmprestimoController extends Controller
      */
     public function update(Request $request, Emprestimo $emprestimo)
     {
-
         $date = Carbon::now()->toDateString();
         $devolucao = $request->devolucao;
         $em_atraso = $request->em_atraso;
@@ -143,8 +142,8 @@ class EmprestimoController extends Controller
             return redirect()->route('emprestimos.index');
         }
 
-
         session()->flash('mensagemErro', 'Erro ao renovar empréstimo!');
+
         return redirect()->route('emprestimos.index');
     }
 

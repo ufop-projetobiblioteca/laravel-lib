@@ -35,7 +35,8 @@
                     <th>{{ $a->turma }}</th>
                     <th>{{ $a->data_nascimento }}</th>
                     <th>{{ $a->email }}</th>
-                    <td>{{ $a->emprestimos_ativos }}</td>
+                    <th>{{ $a->emprestimos_ativos }}</th>
+                    
                     <td class="tdBotoes">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalVisualizar{{ $a->id }}">
@@ -80,7 +81,7 @@
                                 </dl>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-primary" data-bs-target="#modalEditar{{ $a->id }}" data-bs-toggle="modal" data-bs-dismiss="modal">Editar</button>
+                                <button class="btn btn-outline-warning" data-bs-target="#modalEditar{{ $a->id }}" data-bs-toggle="modal" data-bs-dismiss="modal">Editar</button>
                                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
                             </div>
                         </div>

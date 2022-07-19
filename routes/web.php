@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/', function () {
     return view('home');
 });
- 
+
 Route::resource('/livros', LivroController::class);
 Route::resource('/alunos', AlunoController::class);
 Route::resource('/emprestimos', EmprestimoController::class);
