@@ -26,6 +26,7 @@
                     <th>Livro</th>
                     <th>Código</th>
                     <th>Devolução</th>
+                    <th>Em Atraso</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -38,6 +39,17 @@
                     <th>{{ $e->livro->titulo }}</th>
                     <th>{{ $e->livro->codigo }}</th>
                     <th>{{ $e->devolucao }}</th>
+                    <th>
+                        @if($e->em_atraso == 1)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck1" checked disabled>
+                        </div>
+                        @else
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck1" disabled>
+                        </div>
+                        @endif
+                    </th>
                     <td class="tdBotoes">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDevolver{{ $e->id }}">
@@ -106,7 +118,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <form method="POST" id="formDevolucao" action="{{ route('emprestimos.update', $e->id) }}" onsubmit="return validaData()">
+                            <form method="POST" id="formDevolucao" action="{{ route('emprestimos.update', $e->id) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="modal-body">
@@ -131,6 +143,8 @@
                                             <input type="date" class="form-control" id="devolver" name="devolucao" required>
                                         </dd>
                                     </dl>
+                                    <input type="hidden" class="form-control" name="flag" value="1">
+                                    <input type="hidden" name="em_atraso" id="em_atraso" value="{{ $e->em_atraso }}">
                                 </div>
                                 <div class="modal-footer">
                                     <input type="submit" class="btn btn-outline-success" value="Salvar">
@@ -158,7 +172,9 @@
                                         <p class="mb-0">Tem certeza que deseja devolver "<b>{{$e->livro->titulo}}</b>"?</p>
                                     </blockquote>
                                 </div>
-                                <input type="hidden" class="form-control" name="ativo" value="0">
+                                <input type="hidden" class="form-control" name="id" value="{{ $e->id }}">
+                                <input type="hidden" class="form-control" name="flag" value="0">
+                                <input type="hidden" class="form-control" name="livro_id" value="{{ $e->livro->id }}">
                                 <div class="modal-footer">
                                     <input class="btn btn-outline-success" type="submit" value="Devolver">
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -205,33 +221,56 @@
                         <h5 class="modal-title" id="exampleModalLabel">Novo Empréstimo</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('emprestimos.store') }}" method="post" onsubmit="return validaCadastro()">
+                    <form action="{{ route('emprestimos.store') }}" method="post">
                         @csrf
                         <div class="modal-body">
                             <dl class="row">
+                                <dt class="col-sm-3">Email:</dt>
+                                <dd class="col-sm-9">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" id="aluno_email">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" onclick="fetchUser()">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </dd>
+
                                 <dt class="col-sm-3">Aluno:</dt>
                                 <dd class="col-sm-9">
-                                    <select class="form-select" name="aluno_id">
-                                        @foreach($alunos as $a)
-                                        <option value="{{ $a->id }}">{{ $a->nome }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" id="retorno_email" name="nome" value="" required maxlength="50" disabled>
+                                </dd>
+
+                                <dt class="col-sm-3">Codigo:</dt>
+                                <dd class="col-sm-9">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" id="id_livro">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary" type="button" onclick="fetchBook()">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </dd>
 
                                 <dt class="col-sm-3">Livro:</dt>
                                 <dd class="col-sm-9">
-                                    <select class="form-select" name="livro_id">
-                                        @foreach($livros as $l)
-                                        @if($l->emprestado == 0)
-                                        <option value="{{ $l->id }}">{{ $l->titulo }}</option>
-                                        @endif
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" id="retorno_id" name="titulo" required maxlength="50" disabled>
                                 </dd>
+
                                 <dt class="col-sm-3">Devolução:</dt>
                                 <dd class="col-sm-9">
                                     <input type="date" class="form-control" id="devolucao" name="devolucao" required>
                                 </dd>
+
+                                <input type="hidden" class="form-control" name="livro_id" id="livro_id">
+                                <input type="hidden" class="form-control" name="aluno_id" id="aluno_id">
+                                <input type="hidden" class="form-control" name="em_atraso" value="0">
                                 <input type="hidden" class="form-control" name="renovado" value="0">
                                 <input type="hidden" class="form-control" name="ativo" value="1">
                             </dl>
@@ -246,4 +285,57 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('script')
+<script>
+    function getName() {
+        var input = document.getElementById("aluno_email").value;
+        return input;
+    }
+
+    function getBook() {
+        var input = document.getElementById("id_livro").value;
+        return input;
+    }
+
+    function fetchUser() {
+        $.ajax({
+            type: "GET",
+            url: "/fetch-users",
+            dataType: "json",
+            success: function(response) {
+                input = getName();
+                $.each(response.users, function(key, item) {
+                    if (input == item.email) {
+                        document.getElementById("aluno_id").setAttribute("value", item.id);
+                        document.getElementById("retorno_email").setAttribute("value", item.nome);
+                    } else {
+                        console.log('falha');
+                    }
+                });
+            }
+        });
+    }
+
+    function fetchBook() {
+        $.ajax({
+            type: "GET",
+            url: "/fetch-books",
+            dataType: "json",
+            success: function(response) {
+                input = getBook();
+                $.each(response.books, function(key, item) {
+                    if (input == item.codigo) {
+                        document.getElementById("livro_id").setAttribute("value", item.id);
+                        document.getElementById("retorno_id").setAttribute("value", item.titulo);
+                    } else {
+                        console.log('falha');
+                    }
+                });
+            }
+        });
+    }
+</script>
 @endsection

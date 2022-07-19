@@ -14,10 +14,11 @@ class CreateEmprestimosTable extends Migration
     public function up()
     {
         Schema::create('emprestimos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('aluno_id');
             $table->unsignedBigInteger('livro_id');
             $table->date('devolucao');
+            $table->boolean('em_atraso');
             $table->boolean('renovado');
             $table->boolean('ativo');
             $table->timestamps();

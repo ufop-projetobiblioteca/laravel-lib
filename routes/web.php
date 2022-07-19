@@ -16,15 +16,17 @@ use App\Http\Controllers\EmprestimoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
-})->name('home');
+});
 
 Route::resource('/livros', LivroController::class);
 Route::resource('/alunos', AlunoController::class);
 Route::resource('/emprestimos', EmprestimoController::class);
 
-Auth::routes();
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/fetch-users', [AlunoController::class, 'fetchUser']);
+Route::get('/fetch-books', [LivroController::class, 'fetchBook']);
+Route::get('/historico', [EmprestimoController::class, 'historico'])->name('historico');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

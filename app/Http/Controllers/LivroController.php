@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Livro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LivroController extends Controller
 {
@@ -14,6 +15,17 @@ class LivroController extends Controller
      */
     public function index()
     {
+        $livros = Livro::orderBy('titulo')->get();
+        $emprestimos = DB::table('emprestimos')->get();
+
+        foreach ($livros as $l) {
+            foreach ($emprestimos as $e) {
+                if($e->livro_id == $l->id and $e->ativo == 1) {
+                    DB::table('livros')->where('id', $l->id)->update(['emprestado' => 1]);
+                }
+            }
+        }
+
         $livros = Livro::orderBy('titulo')->paginate(15);
         return view('livros.index', ['livros' => $livros]);
     }
@@ -39,6 +51,14 @@ class LivroController extends Controller
         Livro::create($request->all());
         session()->flash('mensagem', 'Livro cadastrado com sucesso!');
         return redirect()->route('livros.index');
+    }
+
+    public function fetchBook()
+    {
+        $books = Livro::all();
+        return response()->json([
+            'books'=>$books,
+        ]);
     }
 
     /**

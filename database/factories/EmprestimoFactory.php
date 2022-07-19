@@ -28,7 +28,8 @@ class EmprestimoFactory extends Factory
             'livro_id' => Livro::factory(),
             'devolucao' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
             'renovado' => $this->faker->boolean($chanceOfGettingTrue = 0),
-            'ativo' => $this->faker->boolean($chanceOfGettingTrue = 50)
+            'ativo' => $this->faker->boolean($chanceOfGettingTrue = 50),
+            'em_atraso' => $this->faker->boolean($chanceOfGettingTrue = 0)
         ];
     }
 }

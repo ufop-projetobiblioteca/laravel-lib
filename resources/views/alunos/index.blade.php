@@ -35,17 +35,8 @@
                     <th>{{ $a->turma }}</th>
                     <th>{{ $a->data_nascimento }}</th>
                     <th>{{ $a->email }}</th>
-                    <td>
-                        @if($a->emprestimo_ativo == 0)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck1" disabled>
-                        </div>
-                        @else
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck1" checked disabled>
-                        </div>
-                        @endif
-                    </td>
+                    <th>{{ $a->emprestimos_ativos }}</th>
+                    
                     <td class="tdBotoes">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalVisualizar{{ $a->id }}">
@@ -200,7 +191,7 @@
                                 <dd class="col-sm-9">
                                     <input type="email" class="form-control" name="email" required maxlength="30">
                                 </dd>
-                                <input type="hidden" class="form-control" name="emprestimo_ativo" value="0">
+                                <input type="hidden" class="form-control" name="emprestimos_ativos" value="0">
 
                             </div>
                         </div>
