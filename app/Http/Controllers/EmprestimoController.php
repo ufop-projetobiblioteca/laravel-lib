@@ -63,8 +63,8 @@ class EmprestimoController extends Controller
      */
     public function store(Request $request)
     {
-        $emprestado = DB::table('livros')->where('id', $request->livro_id)->get('emprestado');
-        if($emprestado) {
+        $status = DB::table('livros')->where('id', $request->livro_id)->value('emprestado');
+        if($status) {
             session()->flash('mensagemErro', 'Este livro não está disponível!');
             return redirect()->route('emprestimos.index');
         }
