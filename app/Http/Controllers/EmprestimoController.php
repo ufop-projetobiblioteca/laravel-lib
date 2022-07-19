@@ -69,16 +69,24 @@ class EmprestimoController extends Controller
             return redirect()->route('emprestimos.index');
         }
 
-        Emprestimo::create($request->all());
+        $devolucao = $request->devolucao;
+        $date = Carbon::now()->toDateString();
 
-        $livro_id = $request->input('livro_id');
-        $aluno_id = $request->input('aluno_id');
-
-        DB::table('livros')->where('id', $livro_id)->update(['emprestado' => 1]);
-        DB::table('alunos')->where('id', $aluno_id)->increment('emprestimos_ativos', 1);
-
-        session()->flash('mensagem', 'Empréstimo realizado com sucesso!');
-        return redirect()->route('emprestimos.index');
+        if ($devolucao >= $date) {
+            Emprestimo::create($request->all());
+    
+            $livro_id = $request->input('livro_id');
+            $aluno_id = $request->input('aluno_id');
+    
+            DB::table('livros')->where('id', $livro_id)->update(['emprestado' => 1]);
+            DB::table('alunos')->where('id', $aluno_id)->increment('emprestimos_ativos', 1);
+    
+            session()->flash('mensagem', 'Empréstimo realizado com sucesso!');
+            return redirect()->route('emprestimos.index');
+        } else {
+            session()->flash('mensagemErro', 'Insira uma data válida!');
+            return redirect()->route('emprestimos.index');
+        }
     }
 
     /**
