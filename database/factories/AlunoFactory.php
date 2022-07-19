@@ -26,7 +26,7 @@ class AlunoFactory extends Factory
             'data_nascimento' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
             'turma' => $this->faker->randomNumber(),
             'email' => $this->faker->unique()->safeEmail(),
-            'emprestimo_ativo' => $this->faker->boolean($chanceOfGettingTrue = 0)
+            'emprestimos_ativos' => $this->faker->boolean($chanceOfGettingTrue = 0)
         ];
     }
 }

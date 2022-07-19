@@ -18,7 +18,7 @@ class CreateAlunosTable extends Migration
             $table->string('nome', 100);
             $table->date('data_nascimento');
             $table->string('turma', 10);
-            $table->boolean('emprestimo_ativo');
+            $table->integer('emprestimos_ativos');
             $table->string('email')->unique();
             $table->timestamps();
         });

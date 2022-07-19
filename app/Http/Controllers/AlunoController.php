@@ -47,9 +47,17 @@ class AlunoController extends Controller
      * @param  \App\Models\Aluno  $aluno
      * @return \Illuminate\Http\Response
      */
+
+    public function fetchUser()
+    {
+        $users = Aluno::all();
+        return response()->json([
+            'users'=>$users,
+        ]);
+    }
+
     public function show(Aluno $aluno)
     {
-        return view('alunos.show', ['alunos' => $aluno]);
     }
 
     /**

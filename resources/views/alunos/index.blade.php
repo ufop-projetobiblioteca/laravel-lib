@@ -35,7 +35,7 @@
                     <th>{{ $a->turma }}</th>
                     <th>{{ $a->data_nascimento }}</th>
                     <th>{{ $a->email }}</th>
-                    <td>{{ $a->emprestimo_ativo }}</td>
+                    <td>{{ $a->emprestimos_ativos }}</td>
                     <td class="tdBotoes">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalVisualizar{{ $a->id }}">
@@ -190,7 +190,7 @@
                                 <dd class="col-sm-9">
                                     <input type="email" class="form-control" name="email" required maxlength="30">
                                 </dd>
-                                <input type="hidden" class="form-control" name="emprestimo_ativo" value="0">
+                                <input type="hidden" class="form-control" name="emprestimos_ativos" value="0">
 
                             </div>
                         </div>

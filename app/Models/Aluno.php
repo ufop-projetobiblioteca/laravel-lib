@@ -9,7 +9,7 @@ class Aluno extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'data_nascimento', 'turma', 'email', 'emprestimo_ativo'];
+    protected $fillable = ['nome', 'data_nascimento', 'turma', 'email', 'emprestimos_ativos'];
 
     // UMA instância de usuário -> possui N empréstimos (1 ativo)
     public function emprestimos()
