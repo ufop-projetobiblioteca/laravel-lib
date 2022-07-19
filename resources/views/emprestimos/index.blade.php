@@ -175,6 +175,7 @@
                                 <input type="hidden" class="form-control" name="id" value="{{ $e->id }}">
                                 <input type="hidden" class="form-control" name="flag" value="0">
                                 <input type="hidden" class="form-control" name="livro_id" value="{{ $e->livro->id }}">
+                                <input type="hidden" class="form-control" name="aluno_id" value="{{ $e->aluno->id }}">
                                 <div class="modal-footer">
                                     <input class="btn btn-outline-success" type="submit" value="Devolver">
                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
