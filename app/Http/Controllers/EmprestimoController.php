@@ -88,6 +88,7 @@ class EmprestimoController extends Controller
             return redirect()->route('emprestimos.index');
         }
 
+
     }
 
     /**
