@@ -38,7 +38,18 @@
                     <th>{{ $e->aluno->nome }}</th>
                     <th>{{ $e->livro->titulo }}</th>
                     <th>{{ $e->livro->codigo }}</th>
-                    <th>{{ $e->devolucao }}</th>
+                    <th>
+                        <?php
+                            $var = $e->devolucao
+                        ?>
+                        <script>
+                            <?php
+                            echo "var jsvar = '$var';";
+                            ?>
+                            data = jsvar.split('-').reverse().join('/');
+                            document.write(data)
+                        </script>
+                    </th>
                     <th>
                         @if($e->em_atraso == 1)
                         <div class="form-check">
@@ -77,37 +88,6 @@
                 </tr>
                 @endif
 
-                <!-- Modal Visualizar -->
-                <div class="modal fade" id="modalVisualizar{{ $e->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Dados do Empréstimo</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <dl class="row">
-                                    <dt class="col-sm-3">Aluno:</dt>
-                                    <dd class="col-sm-9">{{ $e->aluno->nome }}</dd>
-
-                                    <dt class="col-sm-3">Livro:</dt>
-                                    <dd class="col-sm-9">{{ $e->livro->titulo }}</dd>
-
-                                    <dt class="col-sm-3">Código:</dt>
-                                    <dd class="col-sm-9">{{ $e->livro->codigo }}</dd>
-
-                                    <dt class="col-sm-3">Devolução:</dt>
-                                    <dd class="col-sm-9">{{ $e->devolucao }}</dd>
-                                </dl>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#">Devolver</button>
-                                <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalEditar{{ $e->id }}">Renovar</button>
-                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Modal Renovar -->
                 <div class="modal fade" id="modalEditar{{ $e->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

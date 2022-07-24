@@ -25,7 +25,18 @@
                     <th>{{ $e->aluno->nome }}</th>
                     <th>{{ $e->livro->titulo }}</th>
                     <th>{{ $e->livro->codigo }}</th>
-                    <th>{{ $e->devolucao }}</th>
+                    <th>
+                        <?php
+                            $var = $e->devolucao
+                        ?>
+                        <script>
+                            <?php
+                                echo "var jsvar = '$var';";
+                            ?>
+                            data = jsvar.split('-').reverse().join('/');
+                            document.write(data)
+                        </script>
+                    </th>
                 </tr>
                 @endif
                 @endforeach

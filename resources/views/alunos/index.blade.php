@@ -33,7 +33,18 @@
                 <tr>
                     <th>{{ $a->nome }}</th>
                     <th>{{ $a->turma }}</th>
-                    <th>{{ $a->data_nascimento }}</th>
+                    <th>
+                        <?php
+                            $var = $a->data_nascimento
+                        ?>
+                        <script>
+                            <?php
+                                echo "var jsvar = '$var';";
+                            ?>
+                            data = jsvar.split('-').reverse().join('/');
+                            document.write(data)
+                        </script>
+                    </th>
                     <th>{{ $a->email }}</th>
                     <th>{{ $a->emprestimos_ativos }}</th>
                     
@@ -74,7 +85,18 @@
                                     <dd class="col-sm-9">{{$a->turma}}</dd>
 
                                     <dt class="col-sm-3">Nascimento:</dt>
-                                    <dd class="col-sm-9">{{$a->data_nascimento}}</dd>
+                                    <dd class="col-sm-9">
+                                        <?php
+                                            $var = $a->data_nascimento
+                                        ?>
+                                        <script>
+                                            <?php
+                                                echo "var jsvar = '$var';";
+                                            ?>
+                                            data = jsvar.split('-').reverse().join('/');
+                                            document.write(data)
+                                        </script>
+                                    </dd>
 
                                     <dt class="col-sm-3">Email:</dt>
                                     <dd class="col-sm-9">{{$a->email}}</dd>

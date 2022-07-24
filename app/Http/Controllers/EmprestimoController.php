@@ -76,9 +76,9 @@ class EmprestimoController extends Controller
             Emprestimo::create($request->all());
     
             $livro_id = $request->input('livro_id');
-            $aluno_id = $request->input('aluno_id');
-    
             DB::table('livros')->where('id', $livro_id)->update(['emprestado' => 1]);
+
+            $aluno_id = $request->input('aluno_id');
             DB::table('alunos')->where('id', $aluno_id)->increment('emprestimos_ativos', 1);
     
             session()->flash('mensagem', 'Empréstimo realizado com sucesso!');
@@ -87,6 +87,8 @@ class EmprestimoController extends Controller
             session()->flash('mensagemErro', 'Insira uma data válida!');
             return redirect()->route('emprestimos.index');
         }
+
+
     }
 
     /**
