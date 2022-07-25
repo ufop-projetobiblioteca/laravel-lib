@@ -78,7 +78,7 @@
                                 </button>
 
                                 
-                                <a class="btn btn-link" href="action="{{ route('register') }}">
+                                <a class="btn btn-link" href="{{ route('register') }}">
                                     {{ __('Ainda não tem cadastro?') }}
                                 </a>
                                 
