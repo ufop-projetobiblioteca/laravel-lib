@@ -77,11 +77,11 @@
                                     {{ __('Conectar') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="#">
-                                    {{ __('Esqueceu sua senha?') }}
+                                
+                                <a class="btn btn-link" href="action="{{ route('register') }}">
+                                    {{ __('Ainda não tem cadastro?') }}
                                 </a>
-                                @endif 
+                                
                             </div>
                         </div>
                     </form>
