@@ -10,10 +10,10 @@
     $atrasos = DB::table('emprestimos')->where('em_atraso', 1)->where('ativo', 1)->count();
 
 ?>
+
 <div class="container">
     <div class="row align-items-center">
-        <h1 class="mt-4">Sistema de Administração</h1>
-        <h2 class="mt-4">Biblioteca</h2>
+        <h1 class="mt-4">Sistema de Gerenciamento</h1>
     </div>
     <div class="row">
         <div class="col">
@@ -21,7 +21,7 @@
                 <div class="card-header">Usuários Cadastrados</div>
                 <div class="card-body">
                     <?php
-                        echo $livros
+                        echo $alunos
                     ?>
                 </div>
             </div>
@@ -31,15 +31,9 @@
                 <div class="card-header">Livros Cadastrados</div>
                 <div class="card-body">
                     <?php
-                        echo $alunos
+                        echo $livros
                     ?>
                 </div>
-                <!-- <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">
-                    
-                    </a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -67,5 +61,4 @@
     </div>
 </div>
 
-<!--  -->
 @endsection

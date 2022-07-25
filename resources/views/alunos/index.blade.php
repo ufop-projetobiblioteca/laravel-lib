@@ -31,9 +31,9 @@
             <tbody>
                 @foreach($alunos as $a)
                 <tr>
-                    <th>{{ $a->nome }}</th>
-                    <th>{{ $a->turma }}</th>
-                    <th>
+                    <td>{{ $a->nome }}</td>
+                    <td>{{ $a->turma }}</td>
+                    <td>
                         <?php
                             $var = $a->data_nascimento
                         ?>
@@ -44,9 +44,9 @@
                             data = jsvar.split('-').reverse().join('/');
                             document.write(data)
                         </script>
-                    </th>
-                    <th>{{ $a->email }}</th>
-                    <th>{{ $a->emprestimos_ativos }}</th>
+                    </td>
+                    <td>{{ $a->email }}</td>
+                    <td>{{ $a->emprestimos_ativos }}</td>
                     
                     <td class="tdBotoes">
                         <!-- Button trigger modal -->

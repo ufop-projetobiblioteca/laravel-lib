@@ -6,7 +6,7 @@
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        Empréstimos
+        Histórico
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
@@ -22,10 +22,10 @@
                 @foreach($emprestimos as $e)
                 @if($e->ativo == 0)
                 <tr>
-                    <th>{{ $e->aluno->nome }}</th>
-                    <th>{{ $e->livro->titulo }}</th>
-                    <th>{{ $e->livro->codigo }}</th>
-                    <th>
+                    <td>{{ $e->aluno->nome }}</td>
+                    <td>{{ $e->livro->titulo }}</td>
+                    <td>{{ $e->livro->codigo }}</td>
+                    <td>
                         <?php
                             $var = $e->devolucao
                         ?>
@@ -36,7 +36,7 @@
                             data = jsvar.split('-').reverse().join('/');
                             document.write(data)
                         </script>
-                    </th>
+                    </td>
                 </tr>
                 @endif
                 @endforeach

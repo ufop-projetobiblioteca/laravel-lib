@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <br>
 <div class="card mb-4">
     <div class="card-header">
@@ -21,7 +20,6 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Aluno</th>
                     <th>Livro</th>
                     <th>Código</th>
@@ -34,11 +32,10 @@
                 @foreach($emprestimos as $e)
                 @if($e->ativo == 1)
                 <tr>
-                    <th>{{ $e->id }}</th>
-                    <th>{{ $e->aluno->nome }}</th>
-                    <th>{{ $e->livro->titulo }}</th>
-                    <th>{{ $e->livro->codigo }}</th>
-                    <th>
+                    <td>{{ $e->aluno->nome }}</td>
+                    <td>{{ $e->livro->titulo }}</td>
+                    <td>{{ $e->livro->codigo }}</td>
+                    <td>
                         <?php
                             $var = $e->devolucao
                         ?>
@@ -49,8 +46,8 @@
                             data = jsvar.split('-').reverse().join('/');
                             document.write(data)
                         </script>
-                    </th>
-                    <th>
+                    </td>
+                    <td>
                         @if($e->em_atraso == 1)
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="gridCheck1" checked disabled>
@@ -60,7 +57,7 @@
                             <input class="form-check-input" type="checkbox" id="gridCheck1" disabled>
                         </div>
                         @endif
-                    </th>
+                    </td>
                     <td class="tdBotoes">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDevolver{{ $e->id }}">

@@ -2,14 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
+    <title>Biblioteca</title>
+
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>SysLib</title>
+    <meta name="description" content="Sistema para Gerenciamento de Bibliotecas" />
+    <meta name="keywords" content="HTML, CSS, JavaScript, Laravel">
+    <meta name="author" content="Victor Dias" />
+    
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="{{ url('assets/css/styles.css') }}" rel="stylesheet" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     <script src="{{ url('assets/js/valida.js') }}"></script>
 </head>
@@ -25,13 +29,13 @@
                     @guest
                     @if (Route::has('login'))
                     <li>
-                        <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="dropdown-item" href="{{ route('login') }}">{{ __('Logar') }}</a>
                     </li>
                     @endif
 
                     @if (Route::has('register'))
                     <li>
-                        <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="dropdown-item" href="{{ route('register') }}">{{ __('Cadastrar') }}</a>
                     </li>
                     @endif
                     @else
@@ -56,7 +60,7 @@
                         <div class="sb-sidenav-menu-heading">Menu</div>
                         <a class="nav-link" href="{{route('home')}}">
                             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
-                            Home
+                            Início
                         </a>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-user-shield"></i></div>
@@ -80,10 +84,6 @@
                                 <a class="nav-link" href="{{route('historico')}}">Histórico</a>
                             </nav>
                         </div>
-                        <!-- <a class="nav-link" href="{{route('emprestimos.index')}}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-reader"></i></div>
-                            Empréstimos
-                        </a> -->
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -111,43 +111,26 @@
                     @yield('content')
                 </div>
             </main>
-            <!-- <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SysLib 2021</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                        <img src="D:\Laravel\lib-ufop\resources\images\icea.png" width=12 height=12>
-                    </div>
-                </div>
-            </footer> -->
 
             <footer class="footer mt-auto py-3 bg-light">
                 <div class="container">
                     <div class="row d-flex align-items-center">
                         <div class="col">
-                            <a href="https://www.google.com">
+                            <a href="https://icea.ufop.br/">
                                 <img border="0" src="/assets/img/icea.png" class="img-fluid" alt="iceaLogo" width="100" height="100">
                             </a>
                         </div>
                         <div class="col">
-                            <a href="https://www.google.com">
+                            <a href="https://decsi.ufop.br/">
                                 <img border="0" src="/assets/img/decsi.png" class="img-fluid" alt="decsiLogo" width="100" height="100">
                             </a>
                         </div>
                         <div class="col">
-                            <a href="https://www.google.com">
+                            <a href="http://www2.decom.ufop.br/imobilis/">
                                 <img border="0" src="/assets/img/imobilis.png" class="img-fluid" alt="imobilisLogo" width="100" height="100">
                             </a>
                         </div>
                     </div>
-                    <!-- <div class="footer-copyright bg-light text-center py-3">
-                        <font color="black">© 2020 Copyright:</font>
-                        <a href="https://www.google.com"> MDBootstrap.com</a>
-                    </div> -->
                 </div>
             </footer>
         </div>

@@ -31,12 +31,12 @@
             <tbody>
                 @foreach($livros as $l)
                 <tr>
-                    <th>{{$l->codigo}}</th>
-                    <th>{{$l->titulo}}</th>
-                    <th>{{$l->autor}}</th>
-                    <th>{{$l->edicao}}</th>
-                    <th>{{$l->estante}}-{{$l->prateleira}}</th>
-                    <th>
+                    <td>{{$l->codigo}}</td>
+                    <td>{{$l->titulo}}</td>
+                    <td>{{$l->autor}}</td>
+                    <td>{{$l->edicao}}</td>
+                    <td>{{$l->estante}}-{{$l->prateleira}}</td>
+                    <td>
                         @if($l->emprestado == 1)
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="gridCheck1" checked disabled>
@@ -46,7 +46,7 @@
                             <input class="form-check-input" type="checkbox" id="gridCheck1" disabled>
                         </div>
                         @endif
-                    </th>
+                    </td>
                     <td class="tdBotoes">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalVisualizar{{ $l->id }}">
@@ -192,6 +192,7 @@
                 @endforeach
             </tbody>
         </table>
+        
         <!-- Modal Cadastrar -->
         <div class="modal fade" id="modalCadastrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
