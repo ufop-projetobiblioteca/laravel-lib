@@ -19,8 +19,8 @@ use App\Http\Controllers\EmprestimoController;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('home')->middleware('auth');
-});
+    return view('home');
+})->middleware('auth');
 
 Route::resource('/livros', LivroController::class)->middleware('auth');
 Route::resource('/alunos', AlunoController::class)->middleware('auth');
