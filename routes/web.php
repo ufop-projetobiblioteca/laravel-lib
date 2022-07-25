@@ -19,7 +19,7 @@ use App\Http\Controllers\EmprestimoController;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('home');
+    return view('home')->middleware('auth');
 });
 
 Route::resource('/livros', LivroController::class)->middleware('auth');
@@ -29,4 +29,4 @@ Route::resource('/emprestimos', EmprestimoController::class)->middleware('auth')
 Route::get('/fetch-users', [AlunoController::class, 'fetchUser'])->middleware('auth');
 Route::get('/fetch-books', [LivroController::class, 'fetchBook'])->middleware('auth');
 Route::get('/historico', [EmprestimoController::class, 'historico'])->name('historico')->middleware('auth');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
